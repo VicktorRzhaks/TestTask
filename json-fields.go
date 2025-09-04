@@ -20,7 +20,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Проверяем, что это массив
 	var probe any
 
 	if err := json.Unmarshal(input, &probe); err != nil {
@@ -32,8 +31,6 @@ func main() {
 		fmt.Fprintln(os.Stderr, "input must be a JSON array of objects")
 		os.Exit(1)
 	}
-
-	// Разбираем в целевой тип
 	var objects []map[string]any
 
 	if err := json.Unmarshal(input, &objects); err != nil {
