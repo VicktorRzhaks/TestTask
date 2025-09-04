@@ -20,7 +20,7 @@ func main() {
 	limiter := make(chan struct{}, 1) // токен-бакет 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	// Генератор токенов: не чаще 1/period
+	// генератор токенов не чаще 1/period
 	go func() {
 		t := time.NewTicker(period)
 		defer t.Stop()
@@ -37,7 +37,7 @@ func main() {
 		}
 	}()
 	var wg sync.WaitGroup
-	// Пул воркеров
+	// пул воркеров
 	for i := 0; i < M; i++ {
 		go func() {
 			for id := range jobs {
@@ -48,7 +48,7 @@ func main() {
 					case <-limiter:
 						Request(id)
 					case <-ctx.Done():
-						// отмена — выходим без request
+						// отмена выходим без request
 						return
 					}
 				}(id)
