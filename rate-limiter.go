@@ -1,15 +1,18 @@
 package main
+
 import (
 	"context"
 	"fmt"
 	"sync"
 	"time"
 )
+
 func Request(id int) {
 	fmt.Printf("Request %02d started  at %s\n", id, time.Now().Format("15:04:05.000"))
 	time.Sleep(50 * time.Millisecond)
 	fmt.Printf("Request %02d finished at %s\n", id, time.Now().Format("15:04:05.000"))
 }
+
 func main() {
 	const (
 		N      = 10
